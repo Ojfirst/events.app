@@ -8,11 +8,13 @@ import EventDetailPage from './routes/event/EventDetailPage';
 import NewEventPage from './routes/event/NewEventPage';
 import EditEventPage from './routes/event/EditEventPage';
 import EventRootLayer from './routes/event/EventRoot';
+import ErrorPage from './routes/ErrorPage';
 
 const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <RootLayer />,
+		errorElement: <ErrorPage />,
 		children: [
 			{ index: true, element: <HomePage /> },
 			{
