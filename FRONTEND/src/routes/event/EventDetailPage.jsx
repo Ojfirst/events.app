@@ -6,7 +6,8 @@ const EventDetailPage = () => {
 
 	return (
 		<>
-			<div>{params.eventId}</div>
+    <h1>EvenDetailPage</h1>
+			<div>Event ID: {params.eventId}</div>
 			<Link to={'..'} relative='path'>Back</Link>
 		</>
 	);
