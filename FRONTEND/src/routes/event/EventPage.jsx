@@ -1,26 +1,28 @@
-import React from 'react';
-import { Link } from 'react-router';
+import { useLoaderData } from 'react-router';
 
-const Dummy_Events = [
-	{ id: 'e1', event: 'Sunday service coming up on every sunday' },
-	{ id: 'e2', event: 'Segandogo "OLORUN Alasepe"' },
-	{ id: 'e3', event: 'Alasepe "The GOD of perfection"' },
-	{ id: 'e4', event: 'Thanks giving of Brother Omojide"' },
-];
+import EventsList from '../../components/EventsList';
 
 const EventPage = () => {
+	const events = useLoaderData();
+
 	return (
 		<>
-			<h1>List of Events</h1>
-			<ul>
-				{Dummy_Events.map((e) => (
-					<li key={e.id}>
-						<Link to={e.id}>{e.event}</Link>
-					</li>
-				))}
-			</ul>
+			<EventsList events={events} />
 		</>
 	);
 };
 
 export default EventPage;
+
+// In other to make loader function linner,
+// it can be declear where its need, then export to the route path
+
+export const Loader = async () => {
+	const response = await fetch('http://localhost:8080/events');
+
+	if (!response.ok) {
+	} else {
+		const resData = await response.json();
+		return resData.events;
+	}
+};
