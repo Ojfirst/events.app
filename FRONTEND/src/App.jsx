@@ -11,6 +11,7 @@ import NewEventPage from './routes/event/NewEventPage';
 import EditEventPage from './routes/event/EditEventPage';
 import EventRootLayer from './routes/event/EventRoot';
 import ErrorPage from './routes/ErrorPage';
+import newEventAction  from './loader-action/EventFormAction';
 
 const router = createBrowserRouter([
 	{
@@ -30,11 +31,15 @@ const router = createBrowserRouter([
 					},
 					{
 						path: ':eventId',
-						element: <EventDetailPage />,
+						id: 'event-detail',
 						loader: EventDetailsLoader,
+						children: [
+							{ index: true, element: <EventDetailPage /> },
+							{ path: 'edit', element: <EditEventPage /> },
+						],
 					},
-					{ path: 'new', element: <NewEventPage /> },
-					{ path: ':eventId/edit', element: <EditEventPage /> },
+
+					{ path: 'new', element: <NewEventPage />, action: newEventAction },
 				],
 			},
 		],

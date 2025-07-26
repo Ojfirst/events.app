@@ -1,17 +1,5 @@
-import React from 'react';
-import EventForm from '../../components/EventForm';
-
-const NewEventPage = () => {
-	return (
-		<>
-			<EventForm />
-		</>
-	);
-};
-
-export default NewEventPage;
-
-export const actionFn = async ({ request, params }) => {
+import { redirect } from 'react-router';
+const newEventAction = async ({ request, params }) => {
 	const data = await request.formData();
 	const eventData = {
 		title: data.get('title'),
@@ -31,6 +19,8 @@ export const actionFn = async ({ request, params }) => {
 			{ status: 500 }
 		);
 	} else {
-		return response;
+		return redirect('..');
 	}
 };
+
+export default newEventAction;
