@@ -11,6 +11,7 @@ const newEventAction = async ({ request, params }) => {
 	};
 
   let url = 'http://localhost:8080/events';
+  
   if (method === 'PATCH') {
     const eventId = params.eventId;
     url = 'http://localhost:8080/events/' + eventId;
