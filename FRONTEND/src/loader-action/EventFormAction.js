@@ -1,6 +1,7 @@
 import { redirect } from 'react-router';
 const newEventAction = async ({ request, params }) => {
-	const data = await request.formData();
+	const data = await request.formData(); // Get Form input
+	// Form input Data
 	const eventData = {
 		title: data.get('title'),
 		image: data.get('image'),
@@ -13,6 +14,12 @@ const newEventAction = async ({ request, params }) => {
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(eventData),
 	});
+  // Server side Validation
+  if (response.status === 422) {
+    const errorData = await response.json();
+    return errorData;
+  }
+
 	if (!response.ok) {
 		throw new Response(
 			JSON.stringify({ message: 'Could not save event, Please try again' }),
