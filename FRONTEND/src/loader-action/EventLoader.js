@@ -1,5 +1,7 @@
+import { data } from 'react-router';
+import EventsNavigation from '../components/EventsNavigation';
 
-const EventLoader = async () => {
+const loadEvents = async () => {
 	const response = await fetch('http://localhost:8080/events');
 
 	if (!response.ok) {
@@ -7,9 +9,14 @@ const EventLoader = async () => {
 			status: 500,
 		});
 	} else {
-		return response;
+		return response.json().then(data => data.events || []); // Ensure data.events is an array
 	}
 };
 
+const EventLoader = () => {
+  return {
+    events: loadEvents(),
+	};
+};
 
 export default EventLoader;

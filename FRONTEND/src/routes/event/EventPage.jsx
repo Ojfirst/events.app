@@ -1,35 +1,19 @@
-import { useLoaderData } from 'react-router';
+import { Suspense } from 'react';
+import { useLoaderData, Await } from 'react-router';
 
 import EventsList from '../../components/EventsList';
 
 const EventPage = () => {
-	const data = useLoaderData();
-	const events = data.events;
-
-	// if (data.isError) {
-	//   return <p>{data.message}</p>
-	// }
+	const { events } = useLoaderData();
+  console.log(events); // Log the events data for debugging
 
 	return (
-		<>
-			<EventsList events={events} />
-		</>
+		<Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
+			<Await resolve={events}>
+				{(loadedEvents) => <EventsList events={loadedEvents} />}
+			</Await>
+		</Suspense>
 	);
 };
 
 export default EventPage;
-
-// In other to make loader function linner,
-// it can be declear where its need, then export to the route path
-
-export const Loader = async () => {
-	const response = await fetch('http://localhost:8080/events');
-
-	if (!response.ok) {
-		throw new Response(JSON.stringify({ message: 'Could not fetch events' }), {
-			status: 500,
-		});
-	} else {
-		return response;
-	}
-};
