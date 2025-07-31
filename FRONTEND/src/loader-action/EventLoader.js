@@ -1,5 +1,3 @@
-import { data } from 'react-router';
-import EventsNavigation from '../components/EventsNavigation';
 
 const loadEvents = async () => {
 	const response = await fetch('http://localhost:8080/events');

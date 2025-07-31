@@ -20,17 +20,17 @@ import newsLetterAction from './loader-action/NewLetterAction';
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <RootLayer />,
+		Component: RootLayer,
 		errorElement: <ErrorPage />,
 		children: [
 			{ index: true, element: <HomePage /> },
 			{
 				path: 'events',
-				element: <EventRootLayer />,
+				Component: EventRootLayer,
 				children: [
 					{
 						index: true,
-						element: <EventPage />,
+						Component: EventPage,
 						loader: EventLoader,
 					},
 					{
@@ -40,18 +40,18 @@ const router = createBrowserRouter([
 						children: [
 							{
 								index: true,
-								element: <EventDetailPage />,
+								Component: EventDetailPage,
 								action: DeletEventAction,
 							},
 							{
 								path: 'edit',
-								element: <EditEventPage />,
+								Component: EditEventPage,
 								action: newEventAction,
 							},
 						],
 					},
 
-					{ path: 'new', element: <NewEventPage />, action: newEventAction },
+					{ path: 'new', Component: NewEventPage, action: newEventAction },
 				],
 			},
 			{

@@ -5,11 +5,11 @@ import EventsList from '../../components/EventsList';
 
 const EventPage = () => {
 	const { events } = useLoaderData();
-  console.log(events); // Log the events data for debugging
+	console.log(events); // Log the events data for debugging
 
 	return (
 		<Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
-			<Await resolve={events}>
+			<Await resolve={events} errorElement={<div style={{textAlign: 'center'}}>Error loading events...</div>}>
 				{(loadedEvents) => <EventsList events={loadedEvents} />}
 			</Await>
 		</Suspense>
