@@ -7,7 +7,10 @@ const loadEvents = async () => {
 			status: 500,
 		});
 	} else {
-		return response.json().then(data => data.events || []); // Ensure data.events is an array
+    const resData = await response.json();
+    return resData.events
+    
+		// return response.json().then(data => data.events || []); // Ensure data.events is an array
 	}
 };
 

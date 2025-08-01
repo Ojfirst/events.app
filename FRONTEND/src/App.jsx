@@ -23,7 +23,7 @@ const router = createBrowserRouter([
 		Component: RootLayer,
 		errorElement: <ErrorPage />,
 		children: [
-			{ index: true, element: <HomePage /> },
+			{ index: true, Component: HomePage },
 			{
 				path: 'events',
 				Component: EventRootLayer,
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: 'newsletter',
-				element: <NewsletterPage />,
+				Component: NewsletterPage,
 				action: newsLetterAction,
 			},
 		],
