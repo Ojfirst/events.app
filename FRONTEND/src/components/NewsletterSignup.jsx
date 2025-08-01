@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 function NewsletterSignup() {
 	const emailRef = useRef();
-	const fetcher = useFetcher();
+	const fetcher = useFetcher(); // Behind the sense loader and action function
 	const { data, state, Form } = fetcher;
 
 	const isSubmitting = state === 'submitting';
