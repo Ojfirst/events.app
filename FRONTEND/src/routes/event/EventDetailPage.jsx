@@ -1,17 +1,31 @@
-import React from 'react';
-import { useRouteLoaderData } from 'react-router';
+import React, { Suspense } from 'react';
+import { Await, useRouteLoaderData } from 'react-router';
 
+import EventsList from '../../components/EventsList';
 import EventItem from '../../components/EventItem';
 
 const EventDetailPage = () => {
-	const data = useRouteLoaderData('event-detail'); // Use the loader data from the route with id 'event-detail'
+	const { event, events } = useRouteLoaderData('event-detail'); // Use the loader data from the route with id 'event-detail'
+
+	console.log('event:', event, 'Events:', events);
 	return (
 		<>
-			<EventItem event={data.event} />
+			<Suspense
+				fallback={
+					<p style={{ textAlign: 'center' }}>Loading Event details....</p>
+				}>
+				<Await resolve={event}>
+					{(loadEvent) => <EventItem event={loadEvent} />}
+				</Await>
+			</Suspense>
+
+			<Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
+				<Await resolve={events}>
+					{(loadEvent) => <EventsList events={loadEvent} />}
+				</Await>
+			</Suspense>
 		</>
 	);
 };
 
 export default EventDetailPage;
-
-

@@ -1,5 +1,4 @@
-
-const loadEvents = async () => {
+export const loadEvents = async () => {
 	const response = await fetch('http://localhost:8080/events');
 
 	if (!response.ok) {
@@ -7,17 +6,17 @@ const loadEvents = async () => {
 			status: 500,
 		});
 	} else {
-    const resData = await response.json();
-    return resData.events
-    
+		const resData = await response.json();
+		return resData.events;
+
 		// return response.json().then(data => data.events || []); // Ensure data.events is an array
 	}
 };
 
-const EventLoader = () => {
-  return {
-    events: loadEvents(),
+const EventsLoader = () => {
+	return {
+		events: loadEvents(),
 	};
 };
 
-export default EventLoader;
+export default EventsLoader;

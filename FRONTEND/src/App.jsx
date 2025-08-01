@@ -5,7 +5,7 @@ import RootLayer from './routes/Root';
 import HomePage from './routes/Home';
 import EventPage from './routes/event/EventPage';
 import EventDetailPage from './routes/event/EventDetailPage';
-import EventLoader from './loader-action/EventLoader';
+import EventsLoader from './loader-action/EventsLoader';
 import EventDetailLoader, {
 	EventDetailAction as DeletEventAction,
 } from './loader-action/EventDetail';
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
 					{
 						index: true,
 						Component: EventPage,
-						loader: EventLoader,
+						loader: EventsLoader,
 					},
 					{
 						path: ':eventId',
