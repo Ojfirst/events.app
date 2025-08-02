@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react';
 import { Await, useRouteLoaderData } from 'react-router';
 
-import EventsList from '../../components/EventsList';
-import EventItem from '../../components/EventItem';
+import EventItem from '../../components/Events/EventItem';
+import EventsList from '../../components/Events/EventsList';
 
 const EventDetailPage = () => {
 	const { event, events } = useRouteLoaderData('event-detail'); // Use the loader data from the route with id 'event-detail'

@@ -14,7 +14,7 @@ import EditEventPage from './routes/event/EditEventPage';
 import EventRootLayer from './routes/event/EventRoot';
 import ErrorPage from './routes/ErrorPage';
 import newEventAction from './loader-action/EventFormAction';
-import NewsletterPage from './components/NewsLetter';
+import NewsletterPage from './components/NewsLetter/NewsLetter';
 import newsLetterAction from './loader-action/NewLetterAction';
 
 const router = createBrowserRouter([

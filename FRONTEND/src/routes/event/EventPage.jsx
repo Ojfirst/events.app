@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { useLoaderData, Await } from 'react-router';
 
-import EventsList from '../../components/EventsList';
+import EventsList from '../../components/Events/EventsList';
 
 const EventPage = () => {
 	const { events } = useLoaderData();
