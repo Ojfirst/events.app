@@ -61,7 +61,7 @@ const router = createBrowserRouter([
 				Component: NewsletterPage,
 				action: newsLetterAction,
 			},
-      {path: 'auth', Component: AuthenticationPage, action: userAuthAction}
+			{ path: 'auth', Component: AuthenticationPage, action: userAuthAction },
 		],
 	},
 ]);
@@ -71,7 +71,7 @@ const App = () => {
 		<Fragment>
 			<RouterProvider router={router} />
 		</Fragment>
-	); 
+	);
 };
 
 export default App;
