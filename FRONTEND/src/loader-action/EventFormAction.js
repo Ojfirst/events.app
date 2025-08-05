@@ -1,5 +1,5 @@
 import { redirect } from 'react-router';
-import { getAuthToken } from '../util/auth';
+import getAuthToken  from '../util/auth';
 
 
 const newEventAction = async ({ request, params }) => {

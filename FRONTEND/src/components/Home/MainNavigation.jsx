@@ -1,65 +1,66 @@
-
-import { NavLink, Form } from 'react-router';
+import { NavLink, Form, useRouteLoaderData } from 'react-router';
 
 import classes from './MainNavigation.module.css';
 import NewsletterSignup from '../NewsLetter/NewsletterSignup';
 
 function MainNavigation() {
-  return (
-    <header className={classes.header}>
-      <nav>
-        <ul className={classes.list}>
-          <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-              end
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/events"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-            >
-              Events
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/newsletter"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-            >
-              Newsletter
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/auth?mode=login" // set to login by default
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-            >
-              Login
-            </NavLink>
-          </li>
-          <li>
-            <Form action={'/logout'} method='post'>
-            <button>Logout</button>
-            </Form>
-          </li>
-        </ul>
-      </nav>
-      <NewsletterSignup />
-    </header>
-  );
+	const token = useRouteLoaderData('root');
+
+	return (
+		<header className={classes.header}>
+			<nav>
+				<ul className={classes.list}>
+					<li>
+						<NavLink
+							to="/"
+							className={({ isActive }) =>
+								isActive ? classes.active : undefined
+							}
+							end>
+							Home
+						</NavLink>
+					</li>
+					<li>
+						<NavLink
+							to="/events"
+							className={({ isActive }) =>
+								isActive ? classes.active : undefined
+							}>
+							Events
+						</NavLink>
+					</li>
+					<li>
+						<NavLink
+							to="/newsletter"
+							className={({ isActive }) =>
+								isActive ? classes.active : undefined
+							}>
+							Newsletter
+						</NavLink>
+					</li>
+					<li>
+						{!token && (
+							<NavLink
+								to="/auth?mode=login" // set to login by default
+								className={({ isActive }) =>
+									isActive ? classes.active : undefined
+								}>
+								Login
+							</NavLink>
+						)}
+					</li>
+					<li>
+						{token && (
+							<Form action={'/logout'} method="post">
+								<button>Logout</button>
+							</Form>
+						)}
+					</li>
+				</ul>
+			</nav>
+			<NewsletterSignup />
+		</header>
+	);
 }
 
 export default MainNavigation;

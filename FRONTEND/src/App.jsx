@@ -19,12 +19,15 @@ import newsLetterAction from './loader-action/NewLetterAction';
 import AuthenticationPage from './routes/authentication/Authentication';
 import userAuthAction from './loader-action/UserAuthAction';
 import { action as logoutAction } from './routes/logout';
+import { tokenLoader } from './util/auth';
 
 const router = createBrowserRouter([
 	{
+    id: 'root',
 		path: '/',
 		Component: RootLayer,
 		errorElement: <ErrorPage />,
+    loader: tokenLoader, // Available acroos all path
 		children: [
 			{ index: true, Component: HomePage },
 			{

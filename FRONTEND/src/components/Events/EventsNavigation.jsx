@@ -1,8 +1,10 @@
-import { NavLink } from 'react-router';
+import { NavLink, useRouteLoaderData } from 'react-router';
 
 import classes from './EventsNavigation.module.css';
 
 function EventsNavigation() {
+const token = useRouteLoaderData('root');
+
 	return (
 		<header className={classes.header}>
 			<nav>
@@ -17,6 +19,7 @@ function EventsNavigation() {
 						</NavLink>
 					</li>
 					<li>
+            {token && 
 						<NavLink
 							to="new"
 							className={({ isActive }) =>
@@ -24,6 +27,7 @@ function EventsNavigation() {
 							}>
 							New Event
 						</NavLink>
+            }
 					</li>
 				</ul>
 			</nav>

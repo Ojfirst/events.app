@@ -1,6 +1,6 @@
 import { redirect } from 'react-router';
 import { loadEvents } from './EventsLoader';
-import { getAuthToken } from '../util/auth';
+import getAuthToken from '../util/auth';
 
 const loadEvent = async (id) => {
 	let url = 'http://localhost:8080/events/';
