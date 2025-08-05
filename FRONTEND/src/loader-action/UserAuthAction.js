@@ -25,7 +25,7 @@ const userAuthAction = async ({ request }) => {
 	});
 
 	if (response.status === 422 || response.status === 401) {
-		return response;
+		return response; // can be accessed with the help of useActionData
 	}
 
 	if (!response.ok) {
@@ -35,7 +35,12 @@ const userAuthAction = async ({ request }) => {
 		);
 	}
 
-	// soon: manage token
+	// TODO
+  const resData = await response.json();
+  const token = resData.token;
+
+  localStorage.setItem('token', token)
+
 	return redirect('/');
 };
 
