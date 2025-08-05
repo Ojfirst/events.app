@@ -17,6 +17,7 @@ import newEventAction from './loader-action/EventFormAction';
 import NewsletterPage from './components/NewsLetter/NewsLetter';
 import newsLetterAction from './loader-action/NewLetterAction';
 import AuthenticationPage from './routes/authentication/Authentication';
+import userAuthAction from './loader-action/UserAuthAction';
 
 const router = createBrowserRouter([
 	{
@@ -60,7 +61,7 @@ const router = createBrowserRouter([
 				Component: NewsletterPage,
 				action: newsLetterAction,
 			},
-      {path: 'auth', Component: AuthenticationPage}
+      {path: 'auth', Component: AuthenticationPage, action: userAuthAction}
 		],
 	},
 ]);
@@ -70,7 +71,7 @@ const App = () => {
 		<Fragment>
 			<RouterProvider router={router} />
 		</Fragment>
-	);
+	); 
 };
 
 export default App;

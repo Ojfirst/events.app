@@ -1,37 +1,42 @@
-import { redirect } from "react-router";
+import { redirect } from 'react-router';
 
-const action = async ({request}) => {
-  const searchParams = new URL(request.url).searchParams; // Get access to SearchParams.
-  const mode = searchParams.get('mode') || 'login'; // Get access to mode.
+const userAuthAction = async ({ request }) => {
+	const searchParams = new URL(request.url).searchParams; // Get access to SearchParams.
+	const mode = searchParams.get('mode') || 'login'; // Get access to mode.
 
-  if (mode !== 'login' && mode !== 'signup') {
-    throw new Response(JSON.stringify({message: 'Unsupported mode'}), {status: 422})
-  }
+	if (mode !== 'login' && mode !== 'signup') {
+		throw new Response(JSON.stringify({ message: 'Unsupported mode' }), {
+			status: 422,
+		});
+	}
 
-  const data = await request.formData();
-  const authData = {
-    email: data.get('email'),
-    password: data.get('password')
-  }
+	const data = await request.formData();
+	const authData = {
+		email: data.get('email'),
+		password: data.get('password'),
+	};
 
-  const response = await fetch('http://localhost:8080/' + mode, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(authData)
-  })
+	const response = await fetch('http://localhost:8080/' + mode, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(authData),
+	});
 
-  if (response.status === 422 || response.status === 401) {
-    return response;
-  }
+	if (response.status === 422 || response.status === 401) {
+		return response;
+	}
 
-  if (!response.ok) {
-    throw new Response(JSON.stringify({message: 'Could not authenticate user'}), {status: 500})
-  }
+	if (!response.ok) {
+		throw new Response(
+			JSON.stringify({ message: 'Could not authenticate user' }),
+			{ status: 500 }
+		);
+	}
 
-  // soon: manage token
-  return redirect('/');
-}
+	// soon: manage token
+	return redirect('/');
+};
 
-export default action;
+export default userAuthAction;
