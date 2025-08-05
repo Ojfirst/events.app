@@ -18,6 +18,7 @@ import NewsletterPage from './components/NewsLetter/NewsLetter';
 import newsLetterAction from './loader-action/NewLetterAction';
 import AuthenticationPage from './routes/authentication/Authentication';
 import userAuthAction from './loader-action/UserAuthAction';
+import { action as logoutAction } from './routes/logout';
 
 const router = createBrowserRouter([
 	{
@@ -62,6 +63,7 @@ const router = createBrowserRouter([
 				action: newsLetterAction,
 			},
 			{ path: 'auth', Component: AuthenticationPage, action: userAuthAction },
+      {path: 'logout', action: logoutAction }
 		],
 	},
 ]);
