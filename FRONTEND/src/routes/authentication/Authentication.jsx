@@ -1,7 +1,7 @@
-import AuthForm from "../../components/Auth/AuthForm";
+import AuthForm from '../../components/Auth/AuthForm';
 
 function AuthenticationPage() {
-  return <AuthForm />;
+	return <AuthForm />;
 }
 
 export default AuthenticationPage;
