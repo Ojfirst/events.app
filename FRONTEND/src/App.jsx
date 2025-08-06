@@ -19,15 +19,15 @@ import newsLetterAction from './loader-action/NewLetterAction';
 import AuthenticationPage from './routes/authentication/Authentication';
 import userAuthAction from './loader-action/UserAuthAction';
 import { action as logoutAction } from './routes/logout';
-import { tokenLoader } from './util/auth';
+import { checkAuthLoader, tokenLoader } from './util/auth';
 
 const router = createBrowserRouter([
 	{
-    id: 'root',
+		id: 'root',
 		path: '/',
 		Component: RootLayer,
 		errorElement: <ErrorPage />,
-    loader: tokenLoader, // Available acroos all path
+		loader: tokenLoader, // Available across all path
 		children: [
 			{ index: true, Component: HomePage },
 			{
@@ -53,11 +53,17 @@ const router = createBrowserRouter([
 								path: 'edit',
 								Component: EditEventPage,
 								action: newEventAction,
+								loader: checkAuthLoader,
 							},
 						],
 					},
 
-					{ path: 'new', Component: NewEventPage, action: newEventAction },
+					{
+						path: 'new',
+						Component: NewEventPage,
+						action: newEventAction,
+						loader: checkAuthLoader,
+					},
 				],
 			},
 			{
@@ -66,7 +72,7 @@ const router = createBrowserRouter([
 				action: newsLetterAction,
 			},
 			{ path: 'auth', Component: AuthenticationPage, action: userAuthAction },
-      {path: 'logout', action: logoutAction }
+			{ path: 'logout', action: logoutAction },
 		],
 	},
 ]);
