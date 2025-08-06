@@ -1,18 +1,29 @@
-import React from 'react';
-import { Outlet } from 'react-router';
+import React, { useEffect } from 'react';
+import { Outlet, useLoaderData, useSubmit } from 'react-router';
 
 import MainNavigation from '../components/Home/MainNavigation';
 
-const RootLayer = () => {
-  return (
-    <>
-      <MainNavigation />
-      <main>
-        <Outlet />
-      </main>
+const RootLayout = () => {
+	// Logout user after set timer
+	const token = useLoaderData();
+	const submit = useSubmit();
 
-    </>
-  )
-}
+	useEffect(() => {
+		if (!token) return;
 
-export default RootLayer
+		setTimeout(() => {
+			submit(null, { action: '/logout', method: 'post' })
+		}, 5000);
+	}, [token, submit]);
+
+	return (
+		<>
+			<MainNavigation />
+			<main>
+				<Outlet />
+			</main>
+		</>
+	);
+};
+
+export default RootLayout;

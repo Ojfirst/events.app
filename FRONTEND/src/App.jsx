@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 
-import RootLayer from './routes/Root';
+import RootLayout from './routes/Root';
 import HomePage from './routes/Home';
 import EventPage from './routes/event/EventPage';
 import EventDetailPage from './routes/event/EventDetailPage';
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
 	{
 		id: 'root',
 		path: '/',
-		Component: RootLayer,
+		Component: RootLayout,
 		errorElement: <ErrorPage />,
 		loader: tokenLoader, // Available across all path
 		children: [
